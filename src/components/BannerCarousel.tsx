@@ -12,9 +12,9 @@ export default function BannerCarousel() {
           src={banner.thumbImage}
           alt={banner.name}
           onClick={() => selectBanner(index)}
-          className={`w-16 h-16 object-cover rounded-lg w-32 h-6 border-2 ${
+          className={`object-cover rounded-lg w-32 h-12 border-2 ${
             index === selectedIndex ? 'border-yellow-400' : 'border-transparent'
-          } cursor-pointer transition-all`}
+          } transition-all`}
           whileHover={{ scale: 1.1 }}
         />
       ))}

@@ -3,7 +3,10 @@ import HeroBanner from './components/HeroBanner';
 
 function App() {
   return (
-    <div className="min-h-screen py-6 bg-[url('/assets/images/wish-background-bc054754.webp')] bg-cover bg-center">
+    <div
+      className="min-h-screen py-6 bg-[url('/assets/images/backgrounds/sky.webp')] bg-cover bg-center"
+      style={{ cursor: "url('/assets/images/cursor.png') 16 16, auto" }}
+    >
       <BannerCarousel />
       <HeroBanner />
     </div>
