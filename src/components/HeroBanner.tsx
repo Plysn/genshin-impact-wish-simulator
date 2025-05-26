@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useBannerStore } from '../store/useBannerStore';
+import { useBannerStore } from '@store/useBannerStore';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function HeroBanner() {
   const { banners, selectedIndex } = useBannerStore();

@@ -1,5 +1,5 @@
-import BannerCarousel from './components/BannerCarousel';
-import HeroBanner from './components/HeroBanner';
+import BannerCarousel from "@components/BannerCarousel";
+import HeroBanner from "@components/HeroBanner";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { useBannerStore } from '../store/useBannerStore';
+import { useBannerStore } from '@store/useBannerStore';
 import { motion } from 'framer-motion';
 import './bannerCarousel.css';
 
