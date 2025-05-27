@@ -1,0 +1,21 @@
+.select-list {
+  background-color: #646975;
+  border: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  .item {
+    text-align: left;
+    display: block;
+    width: 100%;
+    color: #757575;
+    text-decoration: none;
+    padding: 20px 30px;
+    color: #eee;
+    width: 98%;
+  }
+}

@@ -1,0 +1,151 @@
+.wish-title {
+  color: #fff;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font-size: 110%;
+  img {
+    width: 30px;
+    margin-right: 15px;
+  }
+  .btn-help {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border: 0.15rem solid #fff;
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-left: 12px;
+  }
+  button {
+    font-size: 1rem;
+    margin-left: 12px;
+  }
+}
+.budget {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  .fates {
+    .button-fate {
+      display: inline-block;
+      height: 25px;
+      overflow: hidden;
+      background-color: #0000004d;
+      border-radius: 50px;
+      color: #fff;
+      vertical-align: middle;
+      text-align: center;
+      position: relative;
+      margin: 0 10px 0 0;
+      padding: 0 1rem 0 1.85rem;
+      border: 0.7px solid #656565;
+      img {
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: auto;
+        height: 80%;
+      }
+      .svelte {
+        width: 1.2rem;
+        height: 1.2rem;
+        color: #000000b3;
+        background-color: #e0ddd4;
+        border-radius: 100%;
+        position: absolute;
+        right: 3px;
+        top: 50%;
+        font-size: 110%;
+        line-height: 0;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-50%);
+        transition: all 0.2s;
+      }
+    }
+  }
+  .close {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    width: 35px;
+    height: 35px;
+    color: #000000b3;
+    background-color: #e0ddd4;
+    border: 3.5px solid #abbcc6;
+    padding: 0;
+    line-height: 0;
+    overflow: hidden;
+    border-radius: 50px;
+    transition: all 0.2s;
+  }
+}
+
+.hero-banner {
+  display: flex;
+  .navigate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 85%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.2s;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .svelte-btn {
+    position: relative;
+    border: 3.5px solid transparent;
+    border-radius: 50px;
+    background-color: #e0ddd4;
+    box-shadow:
+      0 2px 2px #64646433,
+      0 2px 2px #64646430;
+    padding: 0.25rem 1.5rem;
+    margin: 2px 5px;
+    transition: all 0.2s;
+    border: solid transparent;
+    font-size: 90%;
+    color: #000000b3;
+  }
+  .svelte-btn:hover {
+    border-color: #fff;
+  }
+  .wish-btn {
+    background-image: url('/assets/images/icon/button-wish.webp');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 230px;
+    aspect-ratio: 355 / 88;
+    margin: 0 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #a49a90;
+    transition: all 0.2s;
+    .bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #de2f22 !important;
+      img {
+        height: 20px;
+        width: auto;
+      }
+    }
+  }
+}

@@ -1,14 +1,27 @@
-import BannerCarousel from "@components/BannerCarousel";
-import HeroBanner from "@components/HeroBanner";
+import BannerCarousel from '@components/BannerCarousel';
+import HeroBanner from '@components/HeroBanner';
+import Footer from '@components/Footer';
+import { useState } from 'react';
+import History from '@components/history/History';
+import './App.css'; // Assuming you have a CSS file for global styles
 
 function App() {
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   return (
-    <div
-      className="min-h-screen py-6 bg-[url('/assets/images/backgrounds/sky.webp')] bg-cover bg-center"
-      style={{ cursor: "url('/assets/images/cursor.png') 16 16, auto" }}
-    >
-      <BannerCarousel />
-      <HeroBanner />
+    <div className="main relative w-full h-screen overflow-hidden">
+      <div className="background absolute inset-0 w-full h-full -z-10 py-6 bg-[url('/assets/images/backgrounds/sky.webp')] bg-cover bg-center"></div>
+      <div className="overlay w-full h-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-950 opacity-14"></div>
+      <div className="main-content relative z-10 mt-8">
+        {isHistoryOpen ? (
+          <History setIsHistoryOpen={setIsHistoryOpen} />
+        ) : (
+          <>
+            <BannerCarousel />
+            <HeroBanner />
+            <Footer setIsHistoryOpen={setIsHistoryOpen} />
+          </>
+        )}
+      </div>
     </div>
   );
 }

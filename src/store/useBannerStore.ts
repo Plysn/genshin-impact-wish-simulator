@@ -11,6 +11,8 @@ type Banner = {
 type State = {
   banners: Banner[];
   selectedIndex: number;
+  // 1 when moving left, -1 when moving right
+  direction: number;
   selectBanner: (index: number) => void;
 };
 
@@ -24,6 +26,7 @@ const BANNER_KEYS = [
 
 export const useBannerStore = create<State>((set) => ({
   selectedIndex: 0,
+  direction: 1,
   banners: BANNER_KEYS.map(
     (key, index) =>
       ({
@@ -34,5 +37,13 @@ export const useBannerStore = create<State>((set) => ({
         description: `Description for ${key.charAt(0).toUpperCase() + key.slice(1)}`
       }) as Banner
   ),
-  selectBanner: (index) => set({ selectedIndex: index })
+  selectBanner: (index) => {
+    set((state) => ({
+      direction: index > state.selectedIndex ? 1 : -1
+    }));
+    // Delay the state update to allow the animation to play
+    setTimeout(() => {
+      set({ selectedIndex: index });
+    }, 10);
+  }
 }));

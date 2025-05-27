@@ -1,9 +1,5 @@
 .gi {
   font-family: 'GenshinIcon', sans-serif;
-}
-
-.gi-help::before {
-  content: '\0053';
   font-family: 'genshin-icon' !important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -11,5 +7,63 @@
   text-transform: none !important;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+}
+
+.gi-help::before {
+  content: '\0053';
   color: #fff;
+}
+
+.gi-chat::before {
+  content: '\5a';
+  color: #fff;
+}
+
+.gi-fullscreen::before {
+  content: '\23';
+  color: #fff;
+}
+
+.gi-plus::before {
+  content: '\59';
+}
+
+.gi-close::before {
+  content: '\6b';
+}
+
+.gi-arrow-right::before {
+  content: '\5f';
+  color: #ece5d8;
+  font-size: 2rem;
+}
+
+.gi-arrow-left::before {
+  content: '\60';
+  color: #ece5d8;
+  font-size: 2rem;
+}
+
+.gi-delete::before {
+  content: '\71';
+}
+
+.gi-win::before {
+  content: '\33';
+  color: #bd6932;
+}
+
+.gi-lose::before {
+  content: '\31';
+  color: #bd6932;
+}
+
+.gi-guaranteed::before {
+  content: '\35';
+  color: #bd6932;
+}
+
+.gi-captured::before {
+  content: '\72';
+  color: #bd6932;
 }
