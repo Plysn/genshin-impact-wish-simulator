@@ -1,5 +1,4 @@
 .gi {
-  font-family: 'GenshinIcon', sans-serif;
   font-family: 'genshin-icon' !important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -66,4 +65,27 @@
 .gi-captured::before {
   content: '\72';
   color: #bd6932;
+}
+
+.gi-check::before {
+  content: '\2714';
+  color: #eee;
+}
+
+.gi-caret-up::before {
+  content: '\47';
+}
+.gi-caret-down::before {
+  content: '\48';
+}
+
+.gi-primo-star::before {
+  content: '\72';
+  font-size: 0.7rem;
+}
+
+.gi-companion::before {
+  content: '\68';
+  font-size: 3rem;
+  margin-left: 10px;
 }

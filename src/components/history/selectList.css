@@ -17,5 +17,24 @@
     padding: 20px 30px;
     color: #eee;
     width: 98%;
+    margin: 0.5% 1%;
+    position: relative;
+  }
+  .selected {
+    background-color: #717887;
+    border-radius: 3rem;
+  }
+  .item:hover {
+    background-color: #717887;
+    border-radius: 3rem;
+  }
+  .gi-check {
+    position: absolute;
+    display: block;
+    top: 50%;
+    right: 5%;
+    font-size: 170%;
+    line-height: 0;
+    transform: translateY(-50%);
   }
 }

@@ -24,6 +24,75 @@
     margin-left: 12px;
   }
 }
+.wapper {
+  padding: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #4f6d95;
+  border-radius: 0.25rem;
+  width: 90px;
+  height: 40px;
+  min-width: 50px;
+  aspect-ratio: 2.4 / 1;
+  margin: 0.6em 0.5em;
+  position: relative;
+  transition: all 0.2s;
+  margin-top: 6px;
+
+  .gi {
+    color: #6d8fbb;
+  }
+
+  img {
+    width: 100%;
+    height: 120%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+  }
+  &.selected {
+    background-color: #f7f3d8;
+    height: 46px;
+    margin-top: 0;
+    .gi {
+      color: #eee2c8;
+    }
+  }
+  &:hover {
+    background-color: #f7f3d8;
+    height: 46px;
+    margin-top: 0;
+    .gi {
+      color: #eee2c8;
+    }
+  }
+}
+.wapper::before {
+  content: '';
+  display: block;
+  width: 90%;
+  height: 75%;
+  border: 2.5px solid #6d8fbb;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s;
+  border-radius: 40px;
+}
+
+.wapper.selected::before {
+  border-color: #eee2c8;
+}
+.wapper:hover::before {
+  border-color: #eee2c8;
+}
+
 .budget {
   display: flex;
   align-items: center;

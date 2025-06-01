@@ -1,12 +1,22 @@
 import BannerCarousel from '@components/BannerCarousel';
-import HeroBanner from '@components/HeroBanner';
 import Footer from '@components/Footer';
-import { useState } from 'react';
+import HeroBanner from '@components/HeroBanner';
 import History from '@components/history/History';
-import './App.css'; // Assuming you have a CSS file for global styles
+import { useEffect, useState } from 'react';
+import './App.css';
+import { initializeData } from './db';
 
 function App() {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+
+  useEffect(() => {
+    const init = async () => {
+      await initializeData();
+    };
+
+    init();
+  }, []);
+
   return (
     <div className="main relative w-full h-screen overflow-hidden">
       <div className="background absolute inset-0 w-full h-full -z-10 py-6 bg-[url('/assets/images/backgrounds/sky.webp')] bg-cover bg-center"></div>

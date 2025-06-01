@@ -25,6 +25,9 @@
         margin-right: 15px;
       }
     }
+    .container {
+      color: #8e8e8e;
+    }
     .selectType {
       margin: 10px 0;
       display: flex;
@@ -48,7 +51,7 @@
         .select-box {
           position: absolute;
           left: 300px;
-          width: 100%;
+          width: calc(100%-300px);
           height: 100%;
           display: flex;
           align-items: center;
@@ -92,6 +95,7 @@
         }
       }
       .table-filter {
+        position: relative;
         display: flex;
         justify-content: flex-end;
         display: inline-block;
@@ -99,12 +103,12 @@
         border-radius: 0.2rem;
         padding: 0.3rem 1rem;
         text-align: center;
-        width: 100px !important;
+        width: 175px !important;
       }
     }
     .history-table {
       width: 100%;
-      margin-top: 24px;
+      margin-top: 10px;
       overflow: hidden;
       font-size: 18px;
       border: 1px solid #d5bf94;
@@ -116,7 +120,7 @@
       }
       th,
       td {
-        padding: 12px 16px;
+        padding: 10px 16px;
         text-align: center;
         border-bottom: 1px solid #d5bf94;
         border-right: 1px solid #d5bf94;

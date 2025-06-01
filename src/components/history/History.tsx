@@ -1,3 +1,4 @@
+import { useHistory } from '@/hooks/useHistory';
 import { useState } from 'react';
 import './history.css';
 import SelectList from './SelectList';
@@ -6,140 +7,32 @@ interface Props {
   setIsHistoryOpen: (open: boolean) => void;
 }
 
-interface HistoryItem {
-  damage: number | string;
-  type: string;
-  name: string;
-  date: string;
-  banner: string;
-}
+const bannerOptions = [
+  { value: '1', label: 'Standard Banner' },
+  { value: '2', label: 'Character Event Banner' },
+  { value: '3', label: 'Weapon Event Banner' }
+];
+
+const listStars = [
+  { value: 'all', label: 'Tất Cả' },
+  { value: 'star5', label: '5 Sao' },
+  { value: 'star4', label: '4 Sao' },
+  { value: 'star3', label: '3 Sao' }
+];
 
 export default function History({ setIsHistoryOpen }: Props) {
   const [isShowSeclect, setIsShowSelect] = useState(false);
-  const [historyData] = useState<HistoryItem[]>([
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 1,
-      type: 'Nhân vật',
-      name: 'Diluc',
-      date: '2024-06-02 13:00',
-      banner: 'Banner 2'
-    },
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 1,
-      type: 'Nhân vật',
-      name: 'Diluc',
-      date: '2024-06-02 13:00',
-      banner: 'Banner 2'
-    },
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 1,
-      type: 'Nhân vật',
-      name: 'Diluc',
-      date: '2024-06-02 13:00',
-      banner: 'Banner 2'
-    },
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 1,
-      type: 'Nhân vật',
-      name: 'Diluc',
-      date: '2024-06-02 13:00',
-      banner: 'Banner 2'
-    },
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 1,
-      type: 'Nhân vật',
-      name: 'Diluc',
-      date: '2024-06-02 13:00',
-      banner: 'Banner 2'
-    },
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 1,
-      type: 'Nhân vật',
-      name: 'Diluc',
-      date: '2024-06-02 13:00',
-      banner: 'Banner 2'
-    },
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 1,
-      type: 'Nhân vật',
-      name: 'Diluc',
-      date: '2024-06-02 13:00',
-      banner: 'Banner 2'
-    },
-    {
-      damage: 12,
-      type: 'Vũ khí',
-      name: 'Kiếm Thiên Không',
-      date: '2024-06-01 12:00',
-      banner: 'Banner 1'
-    },
-    {
-      damage: 1,
-      type: 'Nhân vật',
-      name: 'Diluc',
-      date: '2024-06-02 13:00',
-      banner: 'Banner 2'
-    }
-  ]);
+  const [isShowSeclectStar, setIsShowSelectStar] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string>(() => {
+    return localStorage.getItem('selectedBanner') || '1';
+  });
+  const [selectStar, setSelectStar] = useState<string>(() => {
+    return localStorage.getItem('selectedStar') || 'all';
+  });
+  const { historyList } = useHistory();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  const totalPages = Math.ceil(historyData.length / itemsPerPage);
+  const totalPages = Math.ceil(historyList.length / itemsPerPage);
 
   return (
     <div className="history relative z-10 flex gap-12 items-center bg-[url('/assets/images/history/book.webp')]">
@@ -161,7 +54,10 @@ export default function History({ setIsHistoryOpen }: Props) {
                 setIsShowSelect(!isShowSeclect);
               }}
             >
-              <span>Su kien cau nguyen nhan vat</span>
+              <span>
+                {bannerOptions.find((option) => option.value === selectedOption)
+                  ?.label || bannerOptions[0].label}
+              </span>
               <img
                 src="/assets/images/icon/arrow.png"
                 alt="arrow"
@@ -171,12 +67,18 @@ export default function History({ setIsHistoryOpen }: Props) {
                   height: 10
                 }}
               />
-              <SelectList setIsHistoryOpen={setIsHistoryOpen} />
+              {isShowSeclect && (
+                <SelectList
+                  type="banner"
+                  setSelectedOption={setSelectedOption}
+                  listOptions={bannerOptions}
+                />
+              )}
             </div>
           </div>
           <div className="reset">
             <i className="gi gi-delete"></i>
-            <span>Xoa Lich Su</span>
+            <span>Xóa Lịch Sử</span>
           </div>
         </div>
         <div className="container">
@@ -210,8 +112,28 @@ export default function History({ setIsHistoryOpen }: Props) {
               <span className="star4">12</span>
             </div>
           </div>
-          <div className="table-filter svelte-col-span-3">
-            <span className="filter-label">Lọc:</span>
+          <div>
+            <div
+              className="table-filter svelte-col-span-3"
+              onClick={() => setIsShowSelectStar(!isShowSeclectStar)}
+            >
+              <span className="filter-label">
+                Bộ Lọc /{' '}
+                {
+                  listStars.find((option) => option.value === selectStar)?.label
+                }{' '}
+              </span>
+              {isShowSeclectStar && (
+                <SelectList
+                  type="star"
+                  setSelectedOption={setSelectStar}
+                  listOptions={listStars}
+                />
+              )}
+              <i
+                className={`gi ${isShowSeclectStar ? 'gi-caret-up' : 'gi-caret-down'} `}
+              ></i>
+            </div>
           </div>
         </div>
         <table className="history-table">
@@ -225,22 +147,22 @@ export default function History({ setIsHistoryOpen }: Props) {
             </tr>
           </thead>
           <tbody>
-            {historyData &&
-              historyData
+            {historyList &&
+              historyList
                 .slice(
                   (currentPage - 1) * itemsPerPage,
                   currentPage * itemsPerPage
                 )
                 .map((item, idx) => (
                   <tr key={idx}>
-                    <td>{item.damage}</td>
+                    <td>{item.pity}</td>
                     <td>{item.type}</td>
-                    <td>{item.name}</td>
+                    <td>sfsaffsfasfsgtsag</td>
                     <td>{item.date}</td>
-                    <td>{item.banner}</td>
+                    <td>09sduf90suf</td>
                   </tr>
                 ))}
-            {historyData.length === 0 && (
+            {historyList.length === 0 && (
               <tr>
                 <td colSpan={5} className="no-data">
                   Không Có Dữ Liệu.
