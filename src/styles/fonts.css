@@ -4,3 +4,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'gi-global';
+  src: url('/assets/fonts/optimized_global_web.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

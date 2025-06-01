@@ -10,3 +10,11 @@
       auto !important;
   }
 }
+
+@layer base {
+  html,
+  body,
+  * {
+    font-family: 'gi-global', sans-serif;
+  }
+}
