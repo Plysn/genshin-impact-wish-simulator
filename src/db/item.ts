@@ -7,7 +7,7 @@ export interface Item {
   rarity: number;
   pity: number;
   image: string;
-  type: 'character' | 'weapon' | 'standard' | 'begginner';
+  type: 'character' | 'weapon' | 'standard' | 'beginner';
 }
 
 export const checkIfItemsExist = async (db: IDBDatabase): Promise<boolean> => {

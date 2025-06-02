@@ -2,7 +2,7 @@ import { BANNER_STORE } from '.';
 
 export interface Banner {
   id: number;
-  type: 'character' | 'weapon' | 'standard' | 'begginner';
+  type: 'character' | 'weapon' | 'standard' | 'beginner';
   typeName: string;
   name: string;
   heroImage: string;
@@ -84,7 +84,7 @@ export const seedBanners = async (db: IDBDatabase): Promise<void> => {
       itemIds: '7,8,9'
     },
     {
-      type: 'begginner',
+      type: 'beginner',
       typeName: 'Beginner Banner',
       name: 'Symphonist of Scents',
       heroImage: '/assets/images/banners/symphonist-of-scents.webp',

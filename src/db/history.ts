@@ -2,7 +2,7 @@ import { getDbInstance, HISTORY_STORE } from '.';
 
 export interface History {
   id: number;
-  type: 'character' | 'weapon' | 'standard' | 'begginner';
+  type: 'character' | 'weapon' | 'standard' | 'beginner';
   date: string;
   name: string;
   pity: number;
