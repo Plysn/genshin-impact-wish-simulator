@@ -10,7 +10,7 @@ export const useWish = () => {
   const { addToHistory } = useHistory();
 
   const wishOnce = (
-    bannerType: 'character' | 'weapon' | 'standard' | 'beginner'
+    bannerType: 'character' | 'weapon' | 'standard' | 'beginner' | 'normal'
   ) => {
     if (balance < WISH_ONCE_COST) {
       throw new Error('Not enough balance for a single wish');
@@ -32,7 +32,7 @@ export const useWish = () => {
   };
 
   const wishTen = (
-    bannerType: 'character' | 'weapon' | 'standard' | 'beginner'
+    bannerType: 'character' | 'weapon' | 'standard' | 'beginner' | 'normal'
   ) => {
     const items = useItemStore.getState().items;
 

@@ -2,7 +2,7 @@ import { BANNER_STORE } from '.';
 
 export interface Banner {
   id: number;
-  type: 'character' | 'weapon' | 'standard' | 'beginner';
+  type: 'character' | 'weapon' | 'standard' | 'beginner' | 'normal';
   typeName: string;
   name: string;
   heroImage: string;
@@ -98,7 +98,7 @@ export const seedBanners = async (db: IDBDatabase): Promise<void> => {
       mainColor: '#ef7c1a'
     },
     {
-      type: 'character',
+      type: 'normal',
       typeName: 'Character Event',
       name: 'Qiqi',
       heroImage: '/assets/images/banners/qiqi.webp',

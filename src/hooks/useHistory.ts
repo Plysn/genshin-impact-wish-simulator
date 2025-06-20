@@ -31,7 +31,7 @@ export const useHistory = () => {
 
   const addToHistory = (
     item: Item,
-    bannerType: 'character' | 'weapon' | 'standard' | 'beginner'
+    bannerType: 'character' | 'weapon' | 'standard' | 'beginner' | 'normal'
   ) => {
     addHistory({
       type: item.type,

@@ -7,7 +7,7 @@ export interface Item {
   rarity: number;
   pity: number;
   image: string;
-  type: 'character' | 'weapon' | 'standard' | 'beginner';
+  type: 'character' | 'weapon' | 'standard' | 'beginner' | 'normal';
 }
 
 export const checkIfItemsExist = async (db: IDBDatabase): Promise<boolean> => {
@@ -99,6 +99,38 @@ export const seedItems = async (db: IDBDatabase): Promise<void> => {
       pity: 0,
       image: '/assets/images/wish-items/black-tassel.webp',
       type: 'character'
+    },
+    {
+      name: 'Amber',
+      description: 'A Pyro character skilled with a bow.',
+      rarity: 4,
+      pity: 0,
+      image: '/assets/images/wish-items/bloodtained-greatsword.webp',
+      type: 'character'
+    },
+    {
+      name: 'Favonius Sword',
+      description: 'A sword that channels the power of the wind.',
+      rarity: 4,
+      pity: 0,
+      image: '/assets/images/wish-items/raven-bow.webp',
+      type: 'weapon'
+    },
+    {
+      name: 'Barbara',
+      description: 'A Hydro character who excels at healing.',
+      rarity: 4,
+      pity: 0,
+      image: '/assets/images/wish-items/slingshot.webp',
+      type: 'character'
+    },
+    {
+      name: 'Sacrificial Bow',
+      description: 'A bow that grants a chance to end skill cooldowns.',
+      rarity: 4,
+      pity: 0,
+      image: '/assets/images/wish-items/raven-bow.webp',
+      type: 'weapon'
     }
   ];
 
