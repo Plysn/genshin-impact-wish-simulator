@@ -55,9 +55,9 @@ export const seedItems = async (db: IDBDatabase): Promise<void> => {
     {
       name: 'Noelle',
       description: 'A Geo character with healing abilities.',
-      rarity: 4,
+      rarity: 3,
       pity: 0,
-      image: '/assets/images/items/noelle.webp',
+      image: '/assets/images/wish-items/black-tassel.webp',
       type: 'character'
     },
     {
@@ -65,15 +65,15 @@ export const seedItems = async (db: IDBDatabase): Promise<void> => {
       description: 'A powerful Pyro weapon.',
       rarity: 5,
       pity: 0,
-      image: '/assets/images/items/escoffier.webp',
+      image: '/assets/images/wish-items/bloodtained-greatsword.webp',
       type: 'weapon'
     },
     {
       name: 'Navia',
       description: 'A Hydro character with support skills.',
-      rarity: 4,
+      rarity: 3,
       pity: 0,
-      image: '/assets/images/items/navia.webp',
+      image: '/assets/images/wish-items/cool-steel.webp',
       type: 'character'
     },
     {
@@ -81,7 +81,15 @@ export const seedItems = async (db: IDBDatabase): Promise<void> => {
       description: 'A Dendro weapon with unique abilities.',
       rarity: 5,
       pity: 0,
-      image: '/assets/images/items/symphonist-of-scents.webp',
+      image: '/assets/images/wish-items/raven-bow.webp',
+      type: 'weapon'
+    },
+    {
+      name: 'Black Tassel',
+      description: 'A polearm weapon with a focus on crit damage.',
+      rarity: 3,
+      pity: 0,
+      image: '/assets/images/wish-items/slingshot.webp',
       type: 'weapon'
     },
     {
@@ -89,7 +97,7 @@ export const seedItems = async (db: IDBDatabase): Promise<void> => {
       description: 'A Cryo character with healing powers.',
       rarity: 5,
       pity: 0,
-      image: '/assets/images/items/qiqi.webp',
+      image: '/assets/images/wish-items/black-tassel.webp',
       type: 'character'
     }
   ];

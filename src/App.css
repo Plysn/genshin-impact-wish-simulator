@@ -15,6 +15,6 @@
   html,
   body,
   * {
-    font-family: 'gi-global', sans-serif;
+    font-family: 'gi-global', 'gi-jp', sans-serif;
   }
 }

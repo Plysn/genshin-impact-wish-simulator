@@ -9,7 +9,7 @@ export default function HeroBanner() {
   if (!banners.length) {
     return (
       <div className="hero-banner">
-        <div className="relative w-full max-w-4xl h-96 overflow-hidden rounded-2xl shadow-xl mx-auto my-44">
+        <div className="img relative w-full max-w-4xl overflow-hidden rounded-2xl shadow-xl mx-auto my-44">
           <p className="text-center text-gray-500">No banners available</p>
         </div>
       </div>
@@ -18,11 +18,11 @@ export default function HeroBanner() {
 
   return (
     <div className="hero-banner">
-      <div className="relative w-full max-w-4xl h-96 overflow-hidden rounded-2xl shadow-xl mx-auto my-44">
+      <div className="img relative w-full max-w-4xl overflow-hidden rounded-2xl shadow-xl mx-auto my-32">
         <AnimatePresence mode="wait">
           <>
             <motion.img
-              key={banner.id}
+              key={`img-${banner.id}`}
               src={banner.heroImage}
               alt={banner.name}
               initial={{ x: 100 * direction, opacity: 0, scale: 1.05 }}
@@ -31,10 +31,98 @@ export default function HeroBanner() {
               transition={{ duration: 0.4, ease: 'easeInOut' }}
               className="absolute inset-0 object-cover w-full h-full"
             />
-            <div className="absolute bottom-0 left-0 p-4 text-white w-full">
-              <h2 className="text-xl font-bold">{banner.name}</h2>
-              <p className="text-sm">{banner.description}</p>
-            </div>
+            <motion.div
+              key={`content-${banner.id}`}
+              className="frame-content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+            >
+              <p className="top" style={{ backgroundColor: banner.mainColor }}>
+                {banner.typeName}
+              </p>
+              <h2
+                className="text-xl font-bold heading"
+                style={{ color: banner.mainColor }}
+              >
+                {banner.name}
+              </h2>
+              <div className="description ">
+                {banner.type != 'beginner' && (
+                  <p className="set">Tỷ lệ cầu nguyện tăng!</p>
+                )}
+                <span
+                  className="des"
+                  style={{ backgroundColor: banner.mainColor }}
+                >
+                  <i className="gi gi-primo-star"></i>
+                  <p>
+                    Mỗi khi cầu nguyện 10 lần chắc chắn sẽ nhận tối thiểu 1 vật
+                    phẩm từ 4 sao trở lên.
+                  </p>
+                </span>
+                <p className="text-sm note">
+                  {banner.description ||
+                    'Chỉ có thể nhận được các nhân vật 5 sao dành riêng cho sự kiện cầu nguyện đã được chỉ định trong khoảng thời gian cụ thể.'}
+                </p>
+              </div>
+              {banner.items.length === 1 && (
+                <div
+                  className={`character ${banner.name === 'Noelle' ? 'noelle' : ''}`}
+                >
+                  <span className="char-name">
+                    <p className="name">{banner.items[0].name}</p>
+                    <p className="up">UP!</p>
+                  </span>
+                  <p className="char-title">{banner.items[0].description}</p>
+                </div>
+              )}
+              {banner.items.length === 2 && (
+                <>
+                  <div className="featured">
+                    <span className="weapon-name">
+                      <p className="name">{banner.items[0].name}</p>
+                      <p className="up">UP!</p>
+                    </span>
+                  </div>
+                  <div className="rateup">
+                    <span className="weapon-name">
+                      <p className="name">{banner.items[1].name}</p>
+                      <p className="up">UP!</p>
+                    </span>
+                  </div>
+                </>
+              )}
+              {banner.items.length === 4 && (
+                <>
+                  <div className="group group-1">
+                    <span className="char-name">
+                      <p className="name">{banner.items[0].name}</p>
+                    </span>
+                    <p className="char-title">{banner.items[0].description}</p>
+                  </div>
+                  <div className="group group-2">
+                    <span className="char-name">
+                      <p className="name">{banner.items[1].name}</p>
+                    </span>
+                    <p className="char-title">{banner.items[0].description}</p>
+                  </div>
+                  <div className="group group-3">
+                    <span className="char-name">
+                      <p className="name">{banner.items[2].name}</p>
+                    </span>
+                    <p className="char-title">{banner.items[0].description}</p>
+                  </div>
+                  <div className="group group-4">
+                    <span className="char-name">
+                      <p className="name">{banner.items[3].name}</p>
+                    </span>
+                    <p className="char-title">{banner.items[0].description}</p>
+                  </div>
+                </>
+              )}
+            </motion.div>
           </>
         </AnimatePresence>
       </div>

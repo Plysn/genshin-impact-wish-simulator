@@ -89,3 +89,25 @@
   font-size: 3rem;
   margin-left: 10px;
 }
+
+.gi-primo-star::before {
+  content: '\72';
+  font-size: 0.7rem;
+}
+
+.gi-star:before {
+  content: '\45';
+  color: #f7cf33;
+  font-size: 1.525em;
+  display: inline-block;
+}
+
+.gi-circle-o::before {
+  content: '\46';
+  color: #f7cf33;
+}
+
+.gi-times:before {
+  content: '\41';
+  color: #3f9ad1;
+}

@@ -9,6 +9,7 @@ export interface Banner {
   thumbImage: string;
   description: string;
   itemIds: string;
+  mainColor?: string;
 }
 
 export const addBanner = async (
@@ -63,7 +64,8 @@ export const seedBanners = async (db: IDBDatabase): Promise<void> => {
       heroImage: '/assets/images/banners/noelle.webp',
       thumbImage: '/assets/images/thumbs/noelle.webp',
       description: 'A Geo character with healing abilities.',
-      itemIds: '1,2,3'
+      itemIds: '1',
+      mainColor: '#e79649'
     },
     {
       type: 'weapon',
@@ -72,7 +74,8 @@ export const seedBanners = async (db: IDBDatabase): Promise<void> => {
       heroImage: '/assets/images/banners/escoffier.webp',
       thumbImage: '/assets/images/thumbs/escoffier.webp',
       description: 'A weapon with high attack power.',
-      itemIds: '4,5,6'
+      itemIds: '2',
+      mainColor: '#46c2d8'
     },
     {
       type: 'standard',
@@ -81,7 +84,8 @@ export const seedBanners = async (db: IDBDatabase): Promise<void> => {
       heroImage: '/assets/images/banners/navia.webp',
       thumbImage: '/assets/images/thumbs/navia.webp',
       description: 'A standard banner with various items.',
-      itemIds: '7,8,9'
+      itemIds: '3',
+      mainColor: '#cb8f46'
     },
     {
       type: 'beginner',
@@ -90,7 +94,8 @@ export const seedBanners = async (db: IDBDatabase): Promise<void> => {
       heroImage: '/assets/images/banners/symphonist-of-scents.webp',
       thumbImage: '/assets/images/thumbs/symphonist-of-scents.webp',
       description: 'A beginner banner with items for new players.',
-      itemIds: '10,11,12'
+      itemIds: '4,5',
+      mainColor: '#ef7c1a'
     },
     {
       type: 'character',
@@ -99,7 +104,8 @@ export const seedBanners = async (db: IDBDatabase): Promise<void> => {
       heroImage: '/assets/images/banners/qiqi.webp',
       thumbImage: '/assets/images/thumbs/qiqi.webp',
       description: 'A Cryo character with powerful abilities.',
-      itemIds: '13,14,15'
+      itemIds: '6,7,8,9',
+      mainColor: '#757acd'
     }
   ];
 

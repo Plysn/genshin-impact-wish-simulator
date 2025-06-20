@@ -1,25 +1,27 @@
 import { useWish } from '@/hooks/useWish';
 import { useBannerStore } from '@/store/useBannerStore';
 import './homePage.css';
+import type { Item } from '@/db';
 
 interface Props {
   setIsHistoryOpen: (open: boolean) => void;
+  doWishItems: (item: Item[]) => void;
 }
 
-export default function Footer({ setIsHistoryOpen }: Props) {
+export default function Footer({ setIsHistoryOpen, doWishItems }: Props) {
   const { wishOnce, wishTen, canAffordOnce, canAffordTen } = useWish();
   const { banners, selectedIndex } = useBannerStore();
 
   const handleSingleWish = () => {
     const item = wishOnce(banners[selectedIndex].type);
 
-    console.log(item);
+    doWishItems([item]);
   };
 
   const handleTenWishes = () => {
     const items = wishTen(banners[selectedIndex].type);
 
-    console.log(items);
+    doWishItems(items);
   };
 
   return (
@@ -29,7 +31,7 @@ export default function Footer({ setIsHistoryOpen }: Props) {
       </button>
       <div className="right">
         <button
-          className="wish-btn single"
+          className={`wish-btn single ${!canAffordOnce() ? 'disabled' : ''}`}
           onClick={handleSingleWish}
           disabled={!canAffordOnce()}
         >
@@ -40,7 +42,7 @@ export default function Footer({ setIsHistoryOpen }: Props) {
           </div>
         </button>
         <button
-          className="wish-btn ten"
+          className={`wish-btn ten ${!canAffordTen() ? 'disabled' : ''}`}
           onClick={handleTenWishes}
           disabled={!canAffordTen()}
         >

@@ -45,13 +45,15 @@ export const useWish = () => {
       randomItems.push(filteredItems[randomIndex]);
     }
 
-    randomItems.forEach((item) => {
+    const sortedItems = randomItems.sort((a, b) => b.rarity - a.rarity);
+
+    sortedItems.forEach((item) => {
       addToHistory(item, bannerType);
     });
 
     deductBalance(WISH_TEN_COST);
 
-    return randomItems;
+    return sortedItems;
   };
 
   return {

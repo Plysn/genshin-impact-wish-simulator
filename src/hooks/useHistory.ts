@@ -2,6 +2,7 @@ import {
   addHistory,
   deleteAllHistory,
   getAllHistory,
+  deleteHistoryByBannerType,
   type History,
   type Item
 } from '@/db';
@@ -37,7 +38,8 @@ export const useHistory = () => {
       date: new Date().toISOString(),
       name: item.name,
       pity: item.pity,
-      bannerType
+      bannerType,
+      rarity: item.rarity
     });
 
     refreshHistory();
@@ -49,9 +51,16 @@ export const useHistory = () => {
     refreshHistory();
   };
 
+  const deleteHistoryByBanner = (bannerType: string) => {
+    deleteHistoryByBannerType(bannerType);
+
+    refreshHistory();
+  };
+
   return {
     historyList,
     addToHistory,
-    clearHistory
+    clearHistory,
+    deleteHistoryByBanner
   };
 };

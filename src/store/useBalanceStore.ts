@@ -9,7 +9,7 @@ type State = {
 };
 
 export const useBalanceStore = create<State>((set) => {
-  if (!localStorage.getItem('balance')) {
+  if (localStorage.getItem('balance') === undefined) {
     localStorage.setItem('balance', String(INTIAL_VALUE));
   }
 

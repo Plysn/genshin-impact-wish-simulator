@@ -11,3 +11,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'gi-jp';
+  src: url('/assets/fonts/optimized_jp_web.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

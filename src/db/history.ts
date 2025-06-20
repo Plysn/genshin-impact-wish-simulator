@@ -7,6 +7,7 @@ export interface History {
   name: string;
   pity: number;
   bannerType: string;
+  rarity: number;
 }
 
 export const addHistory = async (
@@ -39,6 +40,33 @@ export const deleteAllHistory = async (): Promise<void> => {
 
     request.onsuccess = () => {
       resolve();
+    };
+
+    request.onerror = (event) => {
+      reject((event.target as IDBRequest).error);
+    };
+  });
+};
+export const deleteHistoryByBannerType = async (
+  bannerType: string
+): Promise<void> => {
+  const db = await getDbInstance();
+
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(HISTORY_STORE, 'readwrite');
+    const store = transaction.objectStore(HISTORY_STORE);
+    const request = store.openCursor();
+
+    request.onsuccess = (event) => {
+      const cursor = (event.target as IDBRequest<IDBCursorWithValue>).result;
+      if (cursor) {
+        if (cursor.value.bannerType === bannerType) {
+          cursor.delete();
+        }
+        cursor.continue();
+      } else {
+        resolve();
+      }
     };
 
     request.onerror = (event) => {

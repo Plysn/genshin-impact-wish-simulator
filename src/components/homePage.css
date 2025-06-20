@@ -153,11 +153,243 @@
     overflow: hidden;
     border-radius: 50px;
     transition: all 0.2s;
+    &:hover {
+      border-color: #fff;
+      box-shadow: #a0afbe99 0 0 7px 5px;
+    }
   }
 }
 
 .hero-banner {
   display: flex;
+  position: relative;
+  .img {
+    height: 500px;
+  }
+  .frame-content {
+    text-align: left;
+    position: absolute;
+    color: #565654;
+    height: 100%;
+    width: 100%;
+    .top {
+      color: #fff;
+      padding: 0.3% 1.4%;
+      border-bottom-left-radius: 2rem;
+      border-top-left-radius: 2rem;
+      border-bottom-right-radius: 4rem;
+      top: 0;
+      left: 0;
+      width: fit-content;
+    }
+    .heading {
+      display: flex;
+      align-items: center;
+      bottom: 67%;
+      left: 0;
+      margin: 0 4%;
+      height: 100px;
+      width: 45%;
+      text-align: left;
+      line-height: 100%;
+      font-weight: 400;
+      font-size: 40px;
+    }
+    .description {
+      width: 45%;
+      display: block;
+      padding-left: 4%;
+      overflow: auto;
+      position: relative;
+      margin-top: 60px;
+      .set {
+        text-align: left;
+        line-height: 100%;
+        font-size: 20px;
+      }
+      .des {
+        color: #fff;
+        min-height: 70px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0.5rem 0;
+        padding: 10px;
+      }
+      .note {
+        font-size: 16px;
+      }
+    }
+    .description::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: 5px;
+      left: 8px;
+      background-color: #565654;
+    }
+    .character {
+      text-align: left;
+      position: absolute;
+      left: 50.5%;
+      bottom: 10.5%;
+      &.noelle {
+        top: 70%;
+        left: 57.6%;
+      }
+      .char-name {
+        position: relative;
+        .name {
+          color: #fff;
+          display: inline-block;
+          -webkit-text-stroke: 0.02rem #565654;
+          text-shadow: 0 0 0.15rem #d2c69c;
+          line-height: 100%;
+          font-size: 30px;
+        }
+        .up {
+          color: #fff664;
+          -webkit-text-stroke: 0.05rem #e7a12e;
+          font-size: 18px;
+          filter: drop-shadow(0 0.3rem 0.5rem #fff);
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(100%) translateY(-50%);
+          text-transform: uppercase;
+          text-shadow: 0 0 0.4rem #f79c09;
+        }
+      }
+      .char-title {
+        color: #cfbc99;
+        background-color: #39425d;
+        padding: 1% 2%;
+        white-space: nowrap;
+        width: fit-content;
+        margin-top: 40px;
+      }
+    }
+    .featured {
+      text-align: left;
+      position: absolute;
+      left: 47.5%;
+      top: 70%;
+      .weapon-name {
+        position: relative;
+        .name {
+          color: #fff;
+          display: inline-block;
+          -webkit-text-stroke: 0.02rem #565654;
+          text-shadow: 0 0 0.15rem #d2c69c;
+          line-height: 100%;
+          font-size: 20px;
+          max-width: 200px;
+          white-space: normal;
+          word-break: break-word;
+        }
+        .up {
+          color: #fff664;
+          -webkit-text-stroke: 0.05rem #e7a12e;
+          font-size: 18px;
+          filter: drop-shadow(0 0.3rem 0.5rem #fff);
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(100%) translateY(-150%);
+          text-transform: uppercase;
+          text-shadow: 0 0 0.4rem #f79c09;
+        }
+      }
+    }
+    .rateup {
+      text-align: left;
+      position: absolute;
+      left: 81.5%;
+      bottom: 21%;
+      width: 10%;
+      .name {
+        color: #fff;
+        display: inline-block;
+        -webkit-text-stroke: 0.02rem #565654;
+        text-shadow: 0 0 0.15rem #d2c69c;
+        line-height: 100%;
+        font-size: 20px;
+        max-width: 100px;
+        white-space: normal;
+        word-break: break-word;
+      }
+      .up {
+        color: #fff664;
+        -webkit-text-stroke: 0.05rem #e7a12e;
+        font-size: 18px;
+        filter: drop-shadow(0 0.3rem 0.5rem #fff);
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(100%) translateY(-150%);
+        text-transform: uppercase;
+        text-shadow: 0 0 0.4rem #f79c09;
+      }
+    }
+    .group {
+      position: absolute;
+      text-align: left;
+      .char-name {
+        position: relative;
+        .name {
+          color: #fff;
+          display: inline-block;
+          -webkit-text-stroke: 0.02rem #565654;
+          text-shadow: 0 0 0.15rem #d2c69c;
+          line-height: 100%;
+          font-size: 30px;
+        }
+      }
+      .char-title {
+        color: #cfbc99;
+        background-color: #39425d;
+        padding: 1% 2%;
+        white-space: nowrap;
+        width: fit-content;
+      }
+    }
+    .group-1 {
+      left: 36.5%;
+      top: 80%;
+      .char-title {
+        margin-top: 20px;
+      }
+    }
+    .group-2 {
+      left: 46%;
+      top: 28%;
+      .char-title {
+        margin-top: 18px;
+      }
+    }
+    .group-3 {
+      left: 61%;
+      top: 55%;
+      .char-title {
+        margin-top: 36px;
+      }
+    }
+    .group-4 {
+      left: 75.1%;
+      bottom: 4%;
+      width: 24%;
+      line-height: 170%;
+      .char-title {
+        margin-top: 26px;
+        color: #fff;
+        background-color: #f7ab48;
+        font-size: 11px;
+        line-height: 130%;
+      }
+    }
+  }
   .navigate {
     position: absolute;
     top: 50%;
@@ -174,6 +406,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 100px;
   .svelte-btn {
     position: relative;
     border: 3.5px solid transparent;
@@ -210,11 +443,38 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      color: #de2f22 !important;
       img {
         height: 20px;
         width: auto;
       }
     }
+    &.disabled {
+      .bottom {
+        color: #de2f22 !important;
+      }
+    }
+  }
+}
+
+.animation-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000000b3;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .skip-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    z-index: 50;
   }
 }

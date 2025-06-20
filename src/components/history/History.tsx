@@ -2,37 +2,60 @@ import { useHistory } from '@/hooks/useHistory';
 import { useState } from 'react';
 import './history.css';
 import SelectList from './SelectList';
+import { useBannerStore } from '@/store/useBannerStore';
+import { useMemo } from 'react';
+import DeleteHistoryModal from './ModalDelete';
 
 interface Props {
   setIsHistoryOpen: (open: boolean) => void;
 }
 
-const bannerOptions = [
-  { value: '1', label: 'Standard Banner' },
-  { value: '2', label: 'Character Event Banner' },
-  { value: '3', label: 'Weapon Event Banner' }
-];
-
 const listStars = [
   { value: 'all', label: 'Tất Cả' },
-  { value: 'star5', label: '5 Sao' },
-  { value: 'star4', label: '4 Sao' },
-  { value: 'star3', label: '3 Sao' }
+  { value: '5', label: '5 Sao' },
+  { value: '4', label: '4 Sao' },
+  { value: '3', label: '3 Sao' }
 ];
 
 export default function History({ setIsHistoryOpen }: Props) {
   const [isShowSeclect, setIsShowSelect] = useState(false);
   const [isShowSeclectStar, setIsShowSelectStar] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>(() => {
-    return localStorage.getItem('selectedBanner') || '1';
+    return localStorage.getItem('selectedBanner') || 'character ';
   });
   const [selectStar, setSelectStar] = useState<string>(() => {
     return localStorage.getItem('selectedStar') || 'all';
   });
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const { historyList } = useHistory();
+  const filteredHistoryList = useMemo(() => {
+    return historyList.filter((item) => {
+      const matchBanner = item.bannerType === selectedOption.trim();
+      const matchStar =
+        selectStar === 'all' ? true : item.rarity === Number(selectStar);
+      return matchBanner && matchStar;
+    });
+  }, [historyList, selectedOption, selectStar]);
+  const { banners } = useBannerStore();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  const totalPages = Math.ceil(historyList.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredHistoryList.length / itemsPerPage);
+
+  const totalPity = useMemo(() => {
+    return filteredHistoryList.reduce(
+      (sum, item) => sum + (item.pity > 1 ? item.pity : 0),
+      0
+    );
+  }, [filteredHistoryList]);
+
+  const bannerOptions = useMemo(
+    () =>
+      banners.map((banner) => ({
+        value: banner.type,
+        label: banner.name
+      })),
+    [banners]
+  );
 
   return (
     <div className="history relative z-10 flex gap-12 items-center bg-[url('/assets/images/history/book.webp')]">
@@ -78,7 +101,14 @@ export default function History({ setIsHistoryOpen }: Props) {
           </div>
           <div className="reset">
             <i className="gi gi-delete"></i>
-            <span>Xóa Lịch Sử</span>
+            <span
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                setOpenDeleteModal(true);
+              }}
+            >
+              Xóa Lịch Sử
+            </span>
           </div>
         </div>
         <div className="container">
@@ -93,12 +123,15 @@ export default function History({ setIsHistoryOpen }: Props) {
         <div className="svelte-info-row">
           <div className="svelte-col-span-3">
             <div>
-              Tổn hại hiện tại : <span className="star5">12</span> -{' '}
-              <span className="star4">1</span>
+              Tổn hại hiện tại :{' '}
+              <span className="star5">{filteredHistoryList.length}</span> -{' '}
+              <span className="star4">
+                {filteredHistoryList.length - totalPity}
+              </span>
             </div>
             <div>
               <span>Tổng Số Lượng : </span>
-              <span className="star4">12</span>
+              <span className="star4">{filteredHistoryList.length}</span>
             </div>
           </div>
           <div className="svelte-col-span-3">
@@ -147,22 +180,48 @@ export default function History({ setIsHistoryOpen }: Props) {
             </tr>
           </thead>
           <tbody>
-            {historyList &&
-              historyList
+            {filteredHistoryList &&
+              filteredHistoryList
                 .slice(
                   (currentPage - 1) * itemsPerPage,
                   currentPage * itemsPerPage
                 )
                 .map((item, idx) => (
                   <tr key={idx}>
-                    <td>{item.pity}</td>
+                    <td
+                      style={{
+                        color: item.rarity >= 4 ? '#a256e1' : ''
+                      }}
+                    >
+                      {item.pity}
+                    </td>
                     <td>{item.type}</td>
-                    <td>sfsaffsfasfsgtsag</td>
-                    <td>{item.date}</td>
-                    <td>09sduf90suf</td>
+                    <td
+                      style={{
+                        color: item.rarity >= 4 ? '#a256e1' : ''
+                      }}
+                    >
+                      {item.name}
+                      {item.rarity >= 4 && <> ( {item.rarity}★ )</>}
+                    </td>
+                    <td>
+                      {new Date(item.date).toLocaleString('vi-VN', {
+                        day: 'numeric',
+                        month: 'numeric',
+                        year: 'numeric',
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true
+                      })}
+                    </td>
+                    <td style={{ color: '#dda04f' }}>
+                      {banners.find((banner) => banner.type === item.bannerType)
+                        ?.name || ''}
+                    </td>
                   </tr>
                 ))}
-            {historyList.length === 0 && (
+            {filteredHistoryList.length === 0 && (
               <tr>
                 <td colSpan={5} className="no-data">
                   Không Có Dữ Liệu.
@@ -225,6 +284,17 @@ export default function History({ setIsHistoryOpen }: Props) {
           )}
         </div>
       </div>
+      {openDeleteModal && (
+        <div className="reset-modal">
+          <DeleteHistoryModal
+            setOpenDeleteModal={setOpenDeleteModal}
+            banner={
+              bannerOptions.find((option) => option.value === selectedOption) ||
+              bannerOptions[0]
+            }
+          />
+        </div>
+      )}
     </div>
   );
 }

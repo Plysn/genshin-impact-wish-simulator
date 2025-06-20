@@ -103,7 +103,7 @@
         border-radius: 0.2rem;
         padding: 0.3rem 1rem;
         text-align: center;
-        width: 175px !important;
+        width: 180px !important;
       }
     }
     .history-table {
@@ -174,5 +174,20 @@
         }
       }
     }
+  }
+  .reset-modal {
+    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000080;
+    z-index: 997;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
   }
 }
