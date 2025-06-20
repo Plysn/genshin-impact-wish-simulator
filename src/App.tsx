@@ -10,9 +10,8 @@ import { WishItems } from './components/wish-items';
 function App() {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [wishItems, setWishItems] = useState<Item[]>([]);
-  const [animationTimeoutId, setAnimationTimeoutId] = useState<null | number>(
-    null
-  );
+  const [animationTimeoutId, setAnimationTimeoutId] =
+    useState<NodeJS.Timeout | null>(null);
   const [animationLoading, setAnimationLoading] = useState(false);
 
   const wishType = useMemo(() => {
