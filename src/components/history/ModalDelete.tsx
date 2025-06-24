@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import HistoryContext from './HistoryContext';
 import './modalDelete.css';
-import { useHistory } from '@/hooks/useHistory';
 
 interface Props {
   setOpenDeleteModal: (open: boolean) => void;
@@ -8,11 +8,12 @@ interface Props {
     value: string;
     label: string;
   };
+  star?: number;
 }
 
-const DeleteHistoryModal = ({ setOpenDeleteModal, banner }: Props) => {
+const DeleteHistoryModal = ({ setOpenDeleteModal, banner, star }: Props) => {
   const [dontReset, setDontReset] = useState(false);
-  const { deleteHistoryByBanner } = useHistory();
+  const { deleteHistoryBy } = useContext(HistoryContext);
 
   return (
     <div className="bg-[url('/assets/images/backgrounds/modal-bg.png')] modal-delete border border-[#c6a96f] rounded-md shadow-xl w-[500px] p-6 relative font-sans">
@@ -57,10 +58,8 @@ const DeleteHistoryModal = ({ setOpenDeleteModal, banner }: Props) => {
 
           <button
             className="button-confirm"
-            onClick={() => {
-              if (!dontReset) {
-                deleteHistoryByBanner(banner.value);
-              }
+            onClick={async () => {
+              await deleteHistoryBy(banner.value, star);
               setOpenDeleteModal(false);
             }}
           >

@@ -12,14 +12,14 @@ export default function Footer({ setIsHistoryOpen, doWishItems }: Props) {
   const { wishOnce, wishTen, canAffordOnce, canAffordTen } = useWish();
   const { banners, selectedIndex } = useBannerStore();
 
-  const handleSingleWish = () => {
-    const item = wishOnce(banners[selectedIndex].type);
+  const handleSingleWish = async () => {
+    const item = await wishOnce(banners[selectedIndex].type);
 
     doWishItems([item]);
   };
 
-  const handleTenWishes = () => {
-    const items = wishTen(banners[selectedIndex].type);
+  const handleTenWishes = async () => {
+    const items = await wishTen(banners[selectedIndex].type);
 
     doWishItems(items);
   };

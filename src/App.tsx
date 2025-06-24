@@ -4,8 +4,9 @@ import HeroBanner from '@components/HeroBanner';
 import History from '@components/history/History';
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
-import { initializeData, type Item } from './db';
+import { HistoryProvider } from './components/history/HistoryContext';
 import { WishItems } from './components/wish-items';
+import { initializeData, type Item } from './db';
 
 function App() {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -36,7 +37,9 @@ function App() {
       <div className="overlay w-full h-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-950 opacity-14"></div>
       <div className="main-content relative z-10 mt-8">
         {isHistoryOpen ? (
-          <History setIsHistoryOpen={setIsHistoryOpen} />
+          <HistoryProvider>
+            <History setIsHistoryOpen={setIsHistoryOpen} />
+          </HistoryProvider>
         ) : (
           <>
             <BannerCarousel />
@@ -106,19 +109,22 @@ function App() {
               <></>
             )}
             <HeroBanner />
-            <Footer
-              setIsHistoryOpen={setIsHistoryOpen}
-              doWishItems={(items) => {
-                setAnimationLoading(true);
 
-                const timeoutId = setTimeout(() => {
-                  setAnimationLoading(false);
-                }, 6000);
-                setAnimationTimeoutId(timeoutId);
+            <HistoryProvider>
+              <Footer
+                setIsHistoryOpen={setIsHistoryOpen}
+                doWishItems={(items) => {
+                  setAnimationLoading(true);
 
-                setWishItems(items);
-              }}
-            />
+                  const timeoutId = setTimeout(() => {
+                    setAnimationLoading(false);
+                  }, 6000);
+                  setAnimationTimeoutId(timeoutId);
+
+                  setWishItems(items);
+                }}
+              />
+            </HistoryProvider>
           </>
         )}
       </div>

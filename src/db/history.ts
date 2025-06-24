@@ -10,9 +10,7 @@ export interface History {
   rarity: number;
 }
 
-export const addHistory = async (
-  history: Omit<History, 'id'>
-): Promise<void> => {
+export const add = async (history: Omit<History, 'id'>): Promise<void> => {
   const db = await getDbInstance();
 
   return new Promise((resolve, reject) => {
@@ -30,26 +28,28 @@ export const addHistory = async (
   });
 };
 
-export const deleteAllHistory = async (): Promise<void> => {
-  const db = await getDbInstance();
-
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(HISTORY_STORE, 'readwrite');
-    const store = transaction.objectStore(HISTORY_STORE);
-    const request = store.clear();
-
-    request.onsuccess = () => {
-      resolve();
-    };
-
-    request.onerror = (event) => {
-      reject((event.target as IDBRequest).error);
-    };
-  });
-};
-export const deleteHistoryByBannerType = async (
-  bannerType: string
+export const deleteBy = async (
+  bannerType?: string,
+  star?: number
 ): Promise<void> => {
+  const canDelete = (history: History): boolean => {
+    if (!bannerType && !star) return true;
+
+    if (bannerType && star) {
+      return history.bannerType === bannerType && history.rarity === star;
+    }
+
+    if (bannerType) {
+      return history.bannerType === bannerType;
+    }
+
+    if (star) {
+      return history.rarity === star;
+    }
+
+    return false;
+  };
+
   const db = await getDbInstance();
 
   return new Promise((resolve, reject) => {
@@ -57,12 +57,20 @@ export const deleteHistoryByBannerType = async (
     const store = transaction.objectStore(HISTORY_STORE);
     const request = store.openCursor();
 
+    request.onerror = (event) => {
+      reject((event.target as IDBRequest).error);
+    };
+
     request.onsuccess = (event) => {
       const cursor = (event.target as IDBRequest<IDBCursorWithValue>).result;
+
       if (cursor) {
-        if (cursor.value.bannerType === bannerType) {
+        const history = cursor.value as History;
+
+        if (canDelete(history)) {
           cursor.delete();
         }
+
         cursor.continue();
       } else {
         resolve();
@@ -75,7 +83,7 @@ export const deleteHistoryByBannerType = async (
   });
 };
 
-export const getAllHistory = async (): Promise<History[]> => {
+export const getAll = async (): Promise<History[]> => {
   const db = await getDbInstance();
 
   return new Promise((resolve, reject) => {

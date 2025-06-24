@@ -1,10 +1,9 @@
-import { useHistory } from '@/hooks/useHistory';
-import { useState } from 'react';
-import './history.css';
-import SelectList from './SelectList';
 import { useBannerStore } from '@/store/useBannerStore';
-import { useMemo } from 'react';
+import { useContext, useMemo, useState } from 'react';
+import './history.css';
+import HistoryContext from './HistoryContext';
 import DeleteHistoryModal from './ModalDelete';
+import SelectList from './SelectList';
 
 interface Props {
   setIsHistoryOpen: (open: boolean) => void;
@@ -27,7 +26,8 @@ export default function History({ setIsHistoryOpen }: Props) {
     return localStorage.getItem('selectedStar') || 'all';
   });
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const { historyList } = useHistory();
+  const { historyList } = useContext(HistoryContext);
+
   const filteredHistoryList = useMemo(() => {
     return historyList.filter((item) => {
       const matchBanner = item.bannerType === selectedOption.trim();
@@ -292,6 +292,7 @@ export default function History({ setIsHistoryOpen }: Props) {
               bannerOptions.find((option) => option.value === selectedOption) ||
               bannerOptions[0]
             }
+            star={Number(selectStar)}
           />
         </div>
       )}

@@ -1,15 +1,16 @@
+import HistoryContext from '@/components/history/HistoryContext';
 import { useBalanceStore } from '@/store/useBalanceStore';
 import { useItemStore } from '@/store/useItemStore';
-import { useHistory } from './useHistory';
+import { useContext } from 'react';
 
 const WISH_ONCE_COST = 1;
 const WISH_TEN_COST = 10;
 
 export const useWish = () => {
   const { balance, deductBalance } = useBalanceStore();
-  const { addToHistory } = useHistory();
+  const { addHistory } = useContext(HistoryContext);
 
-  const wishOnce = (
+  const wishOnce = async (
     bannerType: 'character' | 'weapon' | 'standard' | 'beginner' | 'normal'
   ) => {
     if (balance < WISH_ONCE_COST) {
@@ -24,14 +25,14 @@ export const useWish = () => {
 
     const wishedItem = filteredItems[randomIndex];
 
-    addToHistory(wishedItem, bannerType);
+    await addHistory(wishedItem, bannerType);
 
     deductBalance(WISH_ONCE_COST);
 
     return filteredItems[randomIndex];
   };
 
-  const wishTen = (
+  const wishTen = async (
     bannerType: 'character' | 'weapon' | 'standard' | 'beginner' | 'normal'
   ) => {
     const items = useItemStore.getState().items;
@@ -47,9 +48,11 @@ export const useWish = () => {
 
     const sortedItems = randomItems.sort((a, b) => b.rarity - a.rarity);
 
-    sortedItems.forEach((item) => {
-      addToHistory(item, bannerType);
-    });
+    for (let i = 0; i < sortedItems.length; i++) {
+      const item = sortedItems[i];
+
+      await addHistory(item, bannerType);
+    }
 
     deductBalance(WISH_TEN_COST);
 
