@@ -21,10 +21,12 @@ export default function HeroBanner() {
       <div className="wrapper relative w-full h-3/4 overflow-hidden my-auto">
         <div className="absolute top-0 bottom-0 z-10 img w-full h-full rounded-2xl shadow-xl mx-auto flex items-center justify-center">
           <AnimatePresence mode="wait">
-            <>
+            <div
+              className={`relative frame max-w-[900px] w-[80%] aspect-27/14 mx-auto ${banner.items.length === 4 ? 'bottom-based' : ''}`}
+            >
               <motion.picture
                 key={`img-${banner.id}`}
-                className="relative block bottom-0 max-w-[900px] w-[80%] aspect-27/14 mx-auto"
+                className="relative block bottom-0 w-full h-full"
                 initial={{ x: 100 * direction, opacity: 0, scale: 1.05 }}
                 animate={{ x: 0, opacity: 1, scale: 1 }}
                 exit={{ x: -100 * direction, opacity: 0, scale: 0.95 }}
@@ -33,12 +35,12 @@ export default function HeroBanner() {
                 <img
                   src={banner.heroImage}
                   alt={banner.name}
-                  className="absolute top-0 block w-full h-auto"
+                  className="img absolute block w-full h-auto"
                 />
               </motion.picture>
               <motion.div
                 key={`content-${banner.id}`}
-                className="frame-content relative block top-10 -translate-x-2 max-w-[900px] w-[80%] aspect-27/14 mx-auto"
+                className="frame-content relative block -top-2 -translate-x-2 w-full h-full"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -139,7 +141,7 @@ export default function HeroBanner() {
                   </>
                 )}
               </motion.div>
-            </>
+            </div>
           </AnimatePresence>
         </div>
       </div>

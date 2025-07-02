@@ -164,6 +164,18 @@
   display: flex;
   position: relative;
 
+  .frame {
+    &:not(.bottom-based) .img {
+      top: 0;
+    }
+
+    &.bottom-based {
+      .img {
+        bottom: 0;
+      }
+    }
+  }
+
   .frame-content {
     text-align: left;
     position: absolute;
@@ -192,7 +204,7 @@
       font-size: 40px;
     }
     .description {
-      width: 45%;
+      width: 40%;
       display: block;
       padding-left: 4%;
       overflow: auto;
@@ -223,16 +235,16 @@
       bottom: 0;
       height: 100%;
       width: 5px;
-      left: 8px;
+      left: 16px;
       background-color: #565654;
     }
     .character {
       text-align: left;
       position: absolute;
-      left: 49.5%;
-      bottom: 9.5%;
+      left: 50.5%;
+      bottom: 12.5%;
       &.noelle {
-        top: 70%;
+        top: 72%;
         left: 57.6%;
       }
       .char-name {
@@ -302,7 +314,7 @@
     .rateup {
       text-align: left;
       position: absolute;
-      left: 81.5%;
+      left: 78.5%;
       bottom: 21%;
       width: 10%;
       .name {
@@ -352,22 +364,22 @@
       }
     }
     .group-1 {
-      left: 36.5%;
-      top: 80%;
+      left: 37.5%;
+      top: 79%;
       .char-title {
         margin-top: 20px;
       }
     }
     .group-2 {
-      left: 46%;
-      top: 28%;
+      left: 47%;
+      top: 22%;
       .char-title {
         margin-top: 18px;
       }
     }
     .group-3 {
-      left: 61%;
-      top: 55%;
+      left: 62%;
+      top: 52%;
       .char-title {
         margin-top: 36px;
       }
