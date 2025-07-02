@@ -35,7 +35,7 @@ function App() {
     <div className="main relative w-full h-screen overflow-hidden">
       <div className="background absolute inset-0 w-full h-full -z-10 py-6 bg-[url('/assets/images/backgrounds/sky.webp')] bg-cover bg-center"></div>
       <div className="overlay w-full h-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-950 opacity-14"></div>
-      <div className="main-content relative z-10 mt-8">
+      <div className="main-content relative h-full z-10 mt-8">
         {isHistoryOpen ? (
           <HistoryProvider>
             <History setIsHistoryOpen={setIsHistoryOpen} />

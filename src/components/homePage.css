@@ -163,15 +163,11 @@
 .hero-banner {
   display: flex;
   position: relative;
-  .img {
-    height: 500px;
-  }
+
   .frame-content {
     text-align: left;
     position: absolute;
     color: #565654;
-    height: 100%;
-    width: 100%;
     .top {
       color: #fff;
       padding: 0.3% 1.4%;
@@ -233,8 +229,8 @@
     .character {
       text-align: left;
       position: absolute;
-      left: 50.5%;
-      bottom: 10.5%;
+      left: 49.5%;
+      bottom: 9.5%;
       &.noelle {
         top: 70%;
         left: 57.6%;
@@ -268,7 +264,7 @@
         padding: 1% 2%;
         white-space: nowrap;
         width: fit-content;
-        margin-top: 40px;
+        margin-top: 30px;
       }
     }
     .featured {
